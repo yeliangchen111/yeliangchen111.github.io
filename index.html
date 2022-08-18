@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #ccc;
+        }
+
+        a {
+            text-decoration: none;
+            color: #ccc;
+
+        }
+
+        .bigbox {
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        .dianji {
+            width: 10rem;
+            height: 10rem;
+            /* position: absolute;
+            left: 0;
+            top: 0; */
+            text-align: center;
+            background: white;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            border-radius: 10px;
+
+        }
+
+        .onebox,
+        .threebox,
+        .twobox {
+            display: flex;
+
+        }
+
+        .threebox span {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        span {
+            /* width: 42px;
+            height: 42px; */
+            width: 10rem;
+            height: 10rem;
+            background: white;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .jiac {
+            border-color: orange;
+            background-color: skyblue;
+            opacity: 0.2;
+        }
+
+        img {
+            width: 10rem;
+            height: 10rem;
+        }
+
+        .threebox span {
+            text-align: center;
+        }
+
+        .text {
+            font-size: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bigbox">
+        <div class="onebox">
+            <span><img src="./images/一点点.jpg" alt=""></span>
+            <span><img src="./images/茶百道.jpg" alt=""></span>
+            <span><img src="./images/喜茶.jpg" alt=""></span>
+        </div>
+        <div class="twobox">
+            <span><img src="./images/沪上阿姨.jpg" alt=""></span>
+            <div class="dianji"><img src="./images/按钮.jpg" alt=""></div>
+            <span><img src="./images/蜜雪冰城.jpg" alt=""></span>
+        </div>
+        <div class="threebox">
+            <span><img src="./images/CoCo.jpg" alt=""></span>
+            <span>下次一定</span>
+            <span>六个全喝</span>
+        </div>
+        <div class="text"></div>
+    </div>
+    <script>
+        const dianji = document.querySelector('.dianji');
+        const spans = document.querySelectorAll('span');
+        const text = document.querySelector('.text');
+        var timer;
+        var flag = 0;
+        dianji.addEventListener('click', () => {
+            clearInterval(timer);
+            timer = setInterval(function fun() {
+                var num = Math.floor(Math.random() * 8);
+                function wenb(num) {
+                    switch (num) {
+                        case 0:
+                            text.innerHTML = '喜提一点点一杯';
+                            break;
+                        case 1:
+                            text.innerHTML = '喜提茶百道一杯';
+                            break;
+                        case 2:
+                            text.innerHTML = '喜提喜茶一杯';
+                            break;
+                        case 3:
+                            text.innerHTML = '喜提沪上一杯';
+                            break;
+                        case 4:
+                            text.innerHTML = '喜提蜜雪冰城一杯';
+                            break;
+                        case 5:
+                            text.innerHTML = '喜提CoCo一杯';
+                            break;
+                        case 6:
+                            text.innerHTML = '下次一定';
+                            break;
+                        case 7:
+                            text.innerHTML = '六个全喝';
+                            break;
+                    }
+                }
+                // console.log(num);
+                for (let j = 0; j < spans.length; j++) {
+                    for (let i = 0; i < spans.length; i++) {
+                        spans[i].className = '';
+                    }
+                    spans[num].className = 'jiac';
+                }
+                flag++;
+                if (flag == 30) {
+                    clearInterval(timer);
+                    timer = setInterval(fun, 300);
+                }
+                if (flag == 40) {
+                    clearInterval(timer);
+                    timer = setInterval(fun, 500);
+                }
+                if (flag == 45) {
+                    wenb(num);
+                    var num = Math.floor(Math.random() * 8);
+
+                    flag = 0;
+                    clearInterval(timer);
+                }
+            }, 100)
+
+        })
+    </script>
+</body>
+
+</html>
